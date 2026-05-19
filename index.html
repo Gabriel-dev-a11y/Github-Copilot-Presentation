@@ -1,214 +1,427 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Copilot</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub Copilot</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #0d1117;
-      color: white;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    header {
-      text-align: center;
-      padding: 60px;
-      background-color: #161b22;
-    }
+<style>
 
-    h1 {
-      color: #58a6ff;
-      font-size: 50px;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    section {
-      margin: 20px;
-      padding: 30px;
-      background-color: #1f2937;
-      border-radius: 12px;
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    h2 {
-      color: #58a6ff;
-    }
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(
+135deg,
+#0d1117,
+#161b22,
+#1f2937
+);
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #161b22;
-    }
-  </style>
+color:white;
+line-height:1.8;
+}
+
+/* Navbar */
+
+nav{
+position:fixed;
+width:100%;
+top:0;
+padding:15px;
+display:flex;
+justify-content:center;
+gap:30px;
+
+background:rgba(0,0,0,.4);
+
+backdrop-filter:blur(10px);
+
+z-index:1000;
+}
+
+nav a{
+
+color:white;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+
+color:#58a6ff;
+transform:translateY(-3px);
+
+}
+
+/* Header */
+
+header{
+
+height:100vh;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+padding:20px;
+}
+
+header h1{
+
+font-size:5rem;
+
+background:linear-gradient(
+90deg,
+#58a6ff,
+#7ee787
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:fadeIn 1.5s;
+}
+
+header p{
+
+font-size:1.5rem;
+opacity:.8;
+margin-top:20px;
+}
+
+button{
+
+margin-top:30px;
+padding:15px 30px;
+border:none;
+border-radius:50px;
+font-size:1rem;
+cursor:pointer;
+
+background:#58a6ff;
+color:white;
+
+transition:.4s;
+}
+
+button:hover{
+
+transform:scale(1.05);
+box-shadow:0 0 30px #58a6ff;
+}
+
+
+/* Sections */
+
+.container{
+
+width:90%;
+max-width:1200px;
+margin:auto;
+
+}
+
+section{
+
+margin:50px 0;
+
+padding:40px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:25px;
+
+backdrop-filter:blur(10px);
+
+box-shadow:
+
+0 8px 30px rgba(0,0,0,.3);
+
+transition:.6s;
+}
+
+section:hover{
+
+transform:translateY(-8px);
+
+}
+
+h2{
+
+margin-bottom:20px;
+
+color:#58a6ff;
+}
+
+ul{
+
+padding-left:25px;
+}
+
+img{
+
+width:100%;
+max-width:700px;
+display:block;
+margin:auto;
+border-radius:20px;
+
+transition:.5s;
+}
+
+img:hover{
+
+transform:scale(1.03);
+
+}
+
+/* Footer */
+
+footer{
+
+text-align:center;
+padding:50px;
+opacity:.6;
+}
+
+/* Animation */
+
+.hidden{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+.show{
+
+opacity:1;
+transform:translateY(0px);
+
+transition:all 1s;
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+transform:translateY(-30px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+@media(max-width:768px){
+
+header h1{
+
+font-size:3rem;
+
+}
+
+nav{
+
+gap:15px;
+font-size:.8rem;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
+<nav>
+
+<a href="#about">Om</a>
+<a href="#works">Hur det fungerar</a>
+<a href="#advantages">Fördelar</a>
+<a href="#evaluation">Utvärdering</a>
+
+</nav>
+
 <header>
-  <h1>GitHub Copilot</h1>
-  <p>AI för programmering</p>
+
+<h1>GitHub Copilot</h1>
+
+<p>AI för programmering</p>
+
+<button onclick="scrollToContent()">
+
+Utforska
+
+</button>
+
 </header>
 
-<section>
-  <h2>Vad är GitHub Copilot?</h2>
-  <p>
-   GitHub Copilot är ett AI‑baserat verktyg som hjälper programmerare att skriva kod snabbare och enklare.
+<div class="container">
 
-Verktyget utvecklades av GitHub i samarbete med OpenAI och fungerar som en digital assistent för programmering.
+<section id="about" class="hidden">
 
-Copilot kan:
+<h2>Vad är GitHub Copilot?</h2>
 
-föreslå kod i realtid
-skriva hela funktioner
-hjälpa till med felsökning
-skapa dokumentation och kommentarer
-förklara kod
-
-Copilot används direkt i olika kodredigerare och hjälper både nybörjare och erfarna utvecklare.
-  </p>
-</section>
-
-<section>
-  <h2>Hur fungerar det?</h2>
-  <p>
-  Github Copilot är ett AI-baserat verktyg som hjälper programmerare att skriva kod snabbare och enklare. 
-  Det är integrerat direkt i kodeditorer som Visual Studio Code och analyserar vad användaren skriver för att föreslå hela kodrader, funktioner eller lösningar i realtid. Copilot använder avancerade språkmodeller som tränats på stora mängder publik kod och teknisk dokumentation. 
-  Verktyget kan också hjälpa till att förklara kod, skapa tester och hitta fel. Många utvecklare använder Copilot som en digital assistent som sparar tid och gör programmeringen mer effektiv, men det krävs fortfarande att användaren granskar och testar den kod som genereras.
-  </p>
-</section>
-
-  
-<section>
-
-<img src="Github.png" alt="GitHub Copilot" width="500">
-  
-</section>
-
-
-<section>
-  <h2>Fördelar</h2>
-  <ul>
-    <li>Snabbare programmering</li>
-    <li>Hjälper nybörjare</li>
-    <li>Stöd för många programmeringsspråk</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Nackdelar</h2>
-  <ul>
-    <li>Kan ge felaktig kod</li>
-    <li>Kräver internet</li>
-    <li>Vissa funktioner kostar pengar</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Min utvärdering</h2>
-  <p>
-  Jag tycker att GitHub Copilot är ett användbart AI-verktyg som gör programmering enklare och snabbare. Det kan hjälpa till genom att ge förslag på kod, automatisera repetitiva uppgifter och spara tid när man arbetar med större projekt. 
-  För både nybörjare och erfarna programmerare kan det vara ett stöd som gör att man kan fokusera mer på problemlösning och mindre på att skriva samma typ av kod om och om igen. Samtidigt måste användaren förstå koden och inte lita helt på AI:n. 
-  AI-verktyg kan ibland ge felaktiga eller ineffektiva lösningar, och därför är det viktigt att kontrollera att koden fungerar och är säker att använda. Programmeraren behöver fortfarande använda sitt eget tänkande och sina kunskaper för att kunna fatta rätt beslut. 
-  AI bör därför ses som ett hjälpmedel och inte som en ersättning för egen förståelse och erfarenhet.
-  </p>
-  
-</section>
-<section>
-<h2>Vem har skapat GitHub Copilot?</h2>
 <p>
-GitHub Copilot har utvecklats av GitHub i samarbete med OpenAI. GitHub ägs av Microsoft och OpenAI är känt för att utveckla avancerade AI-modeller och teknik inom artificiell intelligens. 
-Copilot bygger på stora språkmodeller som kan förstå och generera kod genom att analysera stora mängder programmeringsdata och mönster. Detta gör att verktyget kan ge förslag på kodrader, hela funktioner och ibland även lösningar på mer komplexa programmeringsproblem. 
-Systemet är utformat för att hjälpa programmerare att arbeta mer effektivt och minska tiden som läggs på rutinmässiga uppgifter.
-Samtidigt utvecklas tekniken ständigt, vilket innebär att Copilot blir bättre på att förstå sammanhang och ge mer relevanta förslag över tid. Det gör att AI-verktyg som Copilot får en allt större roll inom modern mjukvaruutveckling.
-  
- 
-
-</section>
-  <section>
-  <h2>Målgrupp</h2>
-<p>
-GitHub Copilot riktar sig främst till programmerare, utvecklare och studenter inom IT och teknik. Verktyget kan användas både av nybörjare som behöver stöd och av erfarna programmerare som vill arbeta snabbare och mer effektivt. 
-För nybörjare kan Copilot fungera som ett hjälpmedel för att förstå hur kod skrivs och ge exempel på olika lösningar, vilket kan göra inlärningen enklare. För mer erfarna programmerare kan verktyget bidra till ökad produktivitet 
-genom att automatisera delar av kodskrivandet och minska tiden som läggs på repetitiva arbetsuppgifter. Copilot kan också användas inom utbildning, projektarbete och professionell systemutveckling där snabbhet och effektivitet är 
-viktiga faktorer.Eftersom verktyget kan anpassa sina förslag utifrån sammanhanget blir det användbart för många olika typer av användare och programmeringsnivåer.
-</p>
- 
-</section>
-  
-<section>
-<h2>Användningsområden</h2>
-<ul>
-  <li>Skriva kod snabbare</li>
-  <li>Få förslag på funktioner och klasser</li>
-  <li>Lära sig nya programmeringsspråk</li>
-  <li>Generera kommentarer och dokumentation</li>
-</ul>
- 
-</section>
-  
-<section>
-
-  <h2>Kostnad och versioner</h2>
-<p>
-GitHub Copilot är gratis för vissa studenter och open‑source‑bidragsgivare.
-För privatpersoner och företag krävs en betalprenumeration.
-Det finns olika versioner beroende på om verktyget används privat eller i företag.
+Klistra in din nuvarande text här.
 </p>
 
-  
 </section>
-  <section>
-  <h2>Begränsningar</h2>
+
+<section id="works" class="hidden">
+
+<h2>Hur fungerar det?</h2>
+
+<p>
+Klistra in din nuvarande text här.
+</p>
+
+</section>
+
+<section class="hidden">
+
+<h2>GitHub Copilot</h2>
+
+<img src="Github.png"
+alt="GitHub Copilot">
+
+</section>
+
+<section id="advantages" class="hidden">
+
+<h2>Fördelar</h2>
+
 <ul>
-  <li>AI:n kan föreslå felaktig eller osäker kod</li>
-  <li>Kräver internetuppkoppling</li>
-  <li>Användaren måste förstå koden själv</li>
-  <li>Kan skapa beroende om man inte tänker själv</li>
+
+<li>Snabbare programmering</li>
+<li>Hjälper nybörjare</li>
+<li>Stöd för många språk</li>
+
 </ul>
 
-  
 </section>
-  <section>
-  example.png
 
+<section class="hidden">
 
-  
+<h2>Nackdelar</h2>
+
+<ul>
+
+<li>Kan ge felaktig kod</li>
+<li>Kräver internet</li>
+<li>Vissa funktioner kostar pengar</li>
+
+</ul>
+
 </section>
-  <section>
+
+<section id="evaluation" class="hidden">
+
+<h2>Min utvärdering</h2>
+
+<p>
+
+Klistra in din utvärdering här
+
+</p>
+
+</section>
+
+<section class="hidden">
+
 <h2>Länkar</h2>
+
 <ul>
-  <li>https://github.com/features/copilotGitHub Copilot – Officiell sida</a></li>
-  <li>https://openai.comOpenAI</a></li>
+
+<li>
+<a href="https://github.com/features/copilot"
+target="_blank">
+
+GitHub Copilot
+
+</a>
+</li>
+
+<li>
+
+<a href="https://openai.com"
+target="_blank">
+
+OpenAI
+
+</a>
+
+</li>
+
 </ul>
- 
-</section>
-  
-<section>
-  <h2>Arbetsprocess</h2>
-<p>
-Jag använde GitHub tillsammans med AI för att skapa denna webbplats.
-Först undersökte jag vad GitHub Copilot är och hur det fungerar.
-Sedan använde jag AI för att hjälpa till med texter och struktur.
-Jag byggde webbplatsen med HTML och CSS och publicerade den via GitHub Pages.
-</p>
 
 </section>
-  
-<section>
-  <h2>Min utvärdering</h2>
-<p>
-Jag anser att GitHub Copilot är ett mycket användbart AI‑verktyg som kan göra
-programmering snabbare och mer tillgänglig.
-Samtidigt är det viktigt att användaren inte litar blint på AI,
-utan har grundläggande kunskap för att kunna bedöma koden.
-Verktyget fungerar bäst som ett stöd, inte som en ersättning för eget tänkande.
-</p>
 
-</section>
+</div>
+
 <footer>
-  <p>Skapad av Gabriel</p>
+
+<p>Skapad av Gabriel</p>
+
 </footer>
+
+<script>
+
+/* scroll knapp */
+
+function scrollToContent(){
+
+document
+.querySelector(".container")
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+}
+
+/* animation */
+
+const observer=new IntersectionObserver((entries)=>{
+
+entries.forEach((entry)=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".hidden")
+.forEach((el)=>observer.observe(el));
+
+</script>
 
 </body>
 </html>
